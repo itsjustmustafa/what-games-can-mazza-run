@@ -1,0 +1,52 @@
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+tbody tr:hover {
+  border: 1px solid white;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(26, 26, 26);
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(48, 48, 48);
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: rgb(26, 26, 26);
+}
+
+td.result-pass,
+.result-fail {
+  font-weight: bold;
+}
+
+td.result-pass {
+  color: #28a745;
+}
+
+#searchbar {
+  width: 100%;
+  font-size: inherit;
+  box-sizing: border-box;
+  /* padding-left: -10px; */
+}
+
+#increment {
+  text-decoration: underline;
+  cursor: pointer;
+}
