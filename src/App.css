@@ -1,7 +1,6 @@
 #root {
   /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   width: 100%;
 }
@@ -30,13 +29,19 @@ thead {
   background-color: rgb(26, 26, 26);
 }
 
-td.result-pass,
-.result-fail {
-  font-weight: bold;
+td.result-min {
+  color: rgb(255, 236, 111);
+  background-color: rgba(255, 171, 4, 0.25);
 }
 
-td.result-pass {
-  color: #28a745;
+td.result-rec {
+  color: #6aff8d;
+  background-color: rgba(0, 255, 85, 0.25);
+}
+
+td.result-fail {
+  color: rgb(255, 113, 113);
+  background-color: rgba(170, 0, 0, 0.25);
 }
 
 #searchbar {

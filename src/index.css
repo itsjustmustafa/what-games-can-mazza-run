@@ -5,11 +5,16 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  padding: min(32, 4);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: min(5em, 5vi);
 }
 
 a {
@@ -26,17 +31,10 @@ body {
   margin: 0;
   display: flex;
   place-items: start;
-  font-size: 25px;
-  /* align-items: start; */
+  font-size: min(2em, 4vi);
   min-width: 320px;
   min-height: 100vh;
 }
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  place-items: top;
-} */
 
 button {
   border-radius: 8px;
@@ -59,17 +57,8 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+input {
+  backdrop-filter: brightness(75%);
+  background-color: inherit;
+  color: inherit;
 }

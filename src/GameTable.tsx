@@ -8,11 +8,23 @@ interface GameTableProp {
     onSearch: (query: string) => void;
 }
 
-const getPassSymbol = (result: string) => {
-    return result === "PASS" ? '✔' : ' ';
+const getGameResult = (game: Game) => {
+    return game.recResult === "PASS" ? 'recommended' : game.minResult === "PASS" ? 'minimum' : 'none';
 }
-const getResultStyleClass = (result: string) => {
-    return result === "PASS" ? 'result-pass' : 'result-fail';
+
+const getPassSymbol = (game: Game) => {
+    switch (getGameResult(game)) {
+        case 'recommended': return 'Recommended specs'
+        case 'minimum': return 'Minimum specs'
+        default: return 'Nope'
+    }
+}
+const getResultStyleClass = (game: Game) => {
+    switch (getGameResult(game)) {
+        case 'recommended': return 'result-rec'
+        case 'minimum': return 'result-min'
+        default: return 'result-fail'
+    }
 }
 const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
     const defaultTotalLoaded = 100;
@@ -41,8 +53,7 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
                 </tr>
                 <tr className="titleRow">
                     <th>Game</th>
-                    <th>Minimum</th>
-                    <th>Recommended</th>
+                    <th>Can I?</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,14 +63,9 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
                             style={{ width: "50%" }}
                         >{game.game}</td>
                         <td
-                            style={{ width: "25%" }}
-                            className={getResultStyleClass(game.minResult)}>
-                            {getPassSymbol(game.minResult)}
-                        </td>
-                        <td
-                            style={{ width: "25%" }}
-                            className={getResultStyleClass(game.recResult)}>
-                            {getPassSymbol(game.recResult)}
+                            style={{ width: "50%" }}
+                            className={"result " + getResultStyleClass(game)}>
+                            {getPassSymbol(game)}
                         </td>
                     </tr>
                 ))}

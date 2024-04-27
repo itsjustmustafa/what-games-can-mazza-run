@@ -17,12 +17,12 @@ const App: React.FC = () => {
     );
     setGames(filteredGames);
   }
-  const LogoImage = () => <img src="/headphone_hmm.svg" style={{ width: "min(5%, 250px)", display: "inline", padding: "10px" }} />;
+  const LogoImage = () => <img src="/headphone_hmm.svg" style={{ width: "min(15%, 150px)", display: "inline", padding: "3vi" }} />;
 
   return (
     <div>
       <div
-        style={{ display: "flex", placeContent: "center" }}>
+        style={{ display: "flex", placeContent: "center", alignItems: "center" }}>
         <LogoImage />
         <h1 style={{ display: "inline" }}>
           What games can Mazza run?
