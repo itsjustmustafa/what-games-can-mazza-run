@@ -7,9 +7,13 @@
 
 table {
   width: 100%;
-  margin-top: 20px;
-  border-collapse: separate;
-  border-spacing: 0 2px;
+  border-collapse: collapse;
+}
+
+tbody::before {
+  content: '';
+  display: block;
+  height: 0.5em;
 }
 
 tbody tr:hover {
