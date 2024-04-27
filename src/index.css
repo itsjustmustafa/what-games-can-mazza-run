@@ -34,6 +34,7 @@ body {
   font-size: min(2em, 4vi);
   min-width: 320px;
   min-height: 100vh;
+  padding: min(25px, 1vi);
 }
 
 button {
