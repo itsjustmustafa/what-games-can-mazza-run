@@ -11,13 +11,25 @@ const App: React.FC = () => {
     setGames(jsonData.results);
   }, [])
 
+  const goToMyGitHub = () => {
+    window.open("https://github.com/itsjustmustafa/what-games-can-mazza-run");
+  }
+
   const handleSearch = (query: string) => {
     const filteredGames = jsonData.results.filter(game =>
       game.game.toLowerCase().includes(query.toLowerCase())
     );
     setGames(filteredGames);
   }
-  const LogoImage = () => <img src="/headphone_hmm.svg" style={{ width: "min(15%, 150px)", display: "inline", padding: "3vi" }} />;
+  const LogoImage = () => (
+    <img src="/headphone_hmm.svg" style={{
+      width: "min(15%, 150px)",
+      display: "inline",
+      margin: "3vi",
+      cursor: "pointer"
+    }}
+      onClick={goToMyGitHub} />
+  );
 
   return (
     <div>
