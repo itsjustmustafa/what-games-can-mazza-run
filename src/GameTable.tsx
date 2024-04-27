@@ -9,7 +9,7 @@ interface GameTableProp {
 }
 
 const getGameResult = (game: Game) => {
-    return game.recResult === "PASS" ? 'recommended' : game.minResult === "PASS" ? 'minimum' : 'none';
+    return game.minResult === "FAIL" ? 'none' : game.recResult !== "FAIL" ? 'recommended' : 'minimum';
 }
 
 const getPassSymbol = (game: Game) => {
