@@ -74,6 +74,7 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
                         (Show more...)
                     </td>}
                 </tr>
+                {(games.length == 0) && <td colSpan={3}> No games found... </td>}
             </tbody>
         </table>
     );
