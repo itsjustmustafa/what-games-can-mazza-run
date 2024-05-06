@@ -46,7 +46,7 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
     }, [games])
 
     return (
-        <table>
+        <table id="gametable">
             <thead>
                 <tr className="searchBarRow">
                     <th colSpan={3}><SearchBar onSearch={onSearch} /></th>

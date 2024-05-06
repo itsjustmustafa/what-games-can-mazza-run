@@ -28,8 +28,8 @@ const App: React.FC = () => {
   );
 
   return (
-    <div>
-      <div
+    <div id="app">
+      <div id="header"
         style={{ display: "flex", placeContent: "center", alignItems: "center" }}>
         <LogoImage />
         <h1 style={{ display: "inline" }}>
