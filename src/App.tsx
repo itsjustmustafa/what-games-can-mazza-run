@@ -22,12 +22,8 @@ const App: React.FC = () => {
     setGames(filteredGames);
   }
   const LogoImage = () => (
-    <img src="/headphone_hmm.svg" style={{
-      width: "min(15%, 150px)",
-      display: "inline",
-      margin: "3vi",
-      cursor: "pointer"
-    }}
+    <img src="/headphone_hmm.svg"
+      className='logo'
       onClick={goToMyGitHub} />
   );
 

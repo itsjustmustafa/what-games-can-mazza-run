@@ -60,3 +60,10 @@ td.result-fail {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.logo {
+  width: min(25%, 150px);
+  display: "inline";
+  margin: .5rem;
+  cursor: pointer;
+}
