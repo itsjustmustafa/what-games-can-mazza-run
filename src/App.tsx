@@ -9,6 +9,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     setGames(jsonData.results);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
   }, [])
 
   const goToMyGitHub = () => {
@@ -27,8 +31,18 @@ const App: React.FC = () => {
       onClick={goToMyGitHub} />
   );
 
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const remainingScroll = (scrollHeight - clientHeight) - scrollTop;
+    if (remainingScroll <= 0) {
+      window.dispatchEvent(new Event('scrolledToBottom'));
+    }
+  }
+
   return (
-    <div id="app">
+    <div id="app" onScroll={handleScroll}>
       <div id="header"
         style={{ display: "flex", placeContent: "center", alignItems: "center" }}>
         <LogoImage />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Game from './types';
 import SearchBar from './SearchBar';
 
@@ -29,20 +29,36 @@ const getResultStyleClass = (game: Game) => {
 const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
     const defaultTotalLoaded = 100;
     const loadIncrement = 50;
-    const [totalLoaded, setTotalLoaded] = useState<number>(defaultTotalLoaded);
+    const [totalLoaded, _setTotalLoaded] = useState<number>(defaultTotalLoaded);
+    const totalLoadedRef = useRef(totalLoaded);
+    const setTotalLoaded = (totalLoadedUpdate: (prevTotalLoaded: number) => number) => {
+        totalLoadedRef.current = totalLoadedUpdate(totalLoadedRef.current);
+        _setTotalLoaded(totalLoadedUpdate);
+    };
+
+    const gamesLengthRef = useRef(games.length);
+
+    useEffect(() => {
+        window.addEventListener('scrolledToBottom', incrementTotalLoaded);
+
+        return () => {
+            window.removeEventListener('scrolledToBottom', incrementTotalLoaded);
+        }
+    }, []);
 
     const sortedGames = games.slice().sort(
         (a, b) => b.PopCount - a.PopCount
-    ).slice(0, totalLoaded);
+    ).slice(0, totalLoadedRef.current);
 
     const incrementTotalLoaded = () => {
-        if (games.length > totalLoaded) {
+        if (gamesLengthRef.current > totalLoadedRef.current) {
             setTotalLoaded(prevTotalLoaded => prevTotalLoaded + loadIncrement);
         }
     }
 
     useEffect(() => {
-        setTotalLoaded(Math.min(defaultTotalLoaded, games.length));
+        setTotalLoaded(_ => Math.min(defaultTotalLoaded, games.length));
+        gamesLengthRef.current = games.length;
     }, [games])
 
     return (
