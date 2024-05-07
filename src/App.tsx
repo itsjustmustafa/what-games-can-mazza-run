@@ -32,11 +32,12 @@ const App: React.FC = () => {
   );
 
   const handleScroll = () => {
+    const heightLeeway = 20;
     const scrollTop = document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight;
     const clientHeight = document.documentElement.clientHeight;
     const remainingScroll = (scrollHeight - clientHeight) - scrollTop;
-    if (remainingScroll <= 0) {
+    if (remainingScroll <= heightLeeway) {
       window.dispatchEvent(new Event('scrolledToBottom'));
     }
   }
