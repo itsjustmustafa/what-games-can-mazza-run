@@ -39,10 +39,22 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
     const gamesLengthRef = useRef(games.length);
 
     useEffect(() => {
-        window.addEventListener('scrolledToBottom', incrementTotalLoaded);
-
+        const bottomRowElement = document.getElementById("end-of-table");
+        const observerOptions = {
+            threshold: 1.0
+        }
+        const observer = new IntersectionObserver((entry) => {
+            if (entry[0].isIntersecting) {
+                incrementTotalLoaded();
+            }
+        }, observerOptions);
+        if (bottomRowElement) {
+            observer.observe(bottomRowElement);
+        }
         return () => {
-            window.removeEventListener('scrolledToBottom', incrementTotalLoaded);
+            if (bottomRowElement) {
+                observer.unobserve(bottomRowElement);
+            }
         }
     }, []);
 
@@ -62,37 +74,42 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
     }, [games])
 
     return (
-        <table id="gametable">
-            <thead>
-                <tr className="searchBarRow">
-                    <th colSpan={3}><SearchBar onSearch={onSearch} /></th>
-                </tr>
-                <tr className="titleRow">
-                    <th>Game</th>
-                    <th>Can I?</th>
-                </tr>
-            </thead>
-            <tbody>
-                {sortedGames.map(game => (
-                    <tr key={game.id}>
-                        <td
-                            style={{ width: "50%" }}
-                        >{game.game}</td>
-                        <td
-                            style={{ width: "50%" }}
-                            className={"result " + getResultStyleClass(game)}>
-                            {getPassSymbol(game)}
-                        </td>
+        <>
+            <table id="gametable">
+                <thead>
+                    <tr className="searchBarRow">
+                        <th colSpan={3}><SearchBar onSearch={onSearch} /></th>
                     </tr>
-                ))}
-                <tr>
-                    {(games.length > totalLoaded) && <td colSpan={3} id="increment" onClick={incrementTotalLoaded}>
-                        (Show more...)
-                    </td>}
-                </tr>
-                {(games.length == 0) && <td colSpan={3}> No games found... </td>}
-            </tbody>
-        </table>
+                    <tr className="titleRow">
+                        <th>Game</th>
+                        <th>Can I?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sortedGames.map(game => (
+                        <tr key={game.id}>
+                            <td
+                                style={{ width: "50%" }}
+                            >{game.game}</td>
+                            <td
+                                style={{ width: "50%" }}
+                                className={"result " + getResultStyleClass(game)}>
+                                {getPassSymbol(game)}
+                            </td>
+                        </tr>
+                    ))}
+                    <tr>
+                        {(games.length > totalLoaded) && <td colSpan={3} id="increment" onClick={incrementTotalLoaded}>
+                            (Show more...)
+                        </td>}
+                    </tr>
+                    {(games.length == 0) && <td colSpan={3}> No games found... </td>}
+                </tbody>
+            </table>
+            <div id="end-of-table" style={{
+                "height": "0px",
+            }}></div>
+        </>
     );
 }
 
