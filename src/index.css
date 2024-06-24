@@ -4,7 +4,7 @@
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #281717;
   /* padding: 4; */
 
   font-synthesis: none;
@@ -33,6 +33,4 @@ body {
 
 input {
   backdrop-filter: brightness(75%);
-  background-color: inherit;
-  color: inherit;
 }
