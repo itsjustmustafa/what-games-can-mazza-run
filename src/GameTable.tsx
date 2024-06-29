@@ -95,7 +95,7 @@ const GameTable: React.FC<GameTableProp> = ({ games, onSearch }) => {
             </th>
           </tr>
           <tr className="titleRow">
-            <th>Gamea</th>
+            <th>Games</th>
             <th>Can I?</th>
           </tr>
         </thead>
